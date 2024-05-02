@@ -94,7 +94,7 @@ gradle clean test -Denv=local
 
 <a id="report"></a>
 
-## Allure отчёт
+## [Allure отчёт](https://jenkins.autotests.cloud/job/C24-tarabne-maxidom_ui_tests/allure/)
 ### Графики
 
 <p align="center">
