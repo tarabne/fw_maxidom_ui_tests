@@ -5,18 +5,6 @@
 
 ## Содержание:
 
-- <a href="#tools">Технологии и инструменты</a>
-- <a href="#cases">Тестовое покрытие</a>
-- <a href="#localrun">Локальный запуск тестов</a>
-- <a href="#remoterun">Запуск тестов в Jenkins</a>
-- <a href="#report">Allure отчёт</a>
-- <a href="#testops">Интеграция с Allure TestOps</a>
-- <a href="#jira">Интеграция с Jira</a>
-- <a href="#telegram">Уведомления в Telegram</a>
-- <a href="#video">Видео с примером запуска тестов в Selenoid</a>
-
-рр
-
 - [Технологии и инструменты](#tools)
 - [Тестовое покрытие](#cases)
 - [Локальный запуск тестов](#localrun)
