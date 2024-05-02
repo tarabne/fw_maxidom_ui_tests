@@ -35,7 +35,7 @@ public class BasketTests extends BaseTest {
 
 
     @Test
-    @DisplayName("Очистка корзины корзины")
+    @DisplayName("Очистка корзины")
     @Owner("tarabne")
     @Severity(SeverityLevel.NORMAL)
     void allItemsShouldBeDeletedTest() {
