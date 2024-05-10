@@ -10,18 +10,18 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    private SelenideElement firstNameInput = $("#register_phis_name"),
-        lastNameInput = $("#register_phis_last_name"),
-        emailInput = $("#register_phis_login"),
-        phoneInput = $("#register_phis_phone"),
-        passwordInput = $("#register_phis_password"),
-        ruleAcceptanceInput = $("#register_phis_rules"),
-        reCaptchaInput = $(".box-reg-user-container").$("iframe"),
-        registrationSubmitButton = $("#reg_phis_submit"),
-        registrationVerificationWindow = $("#person-code"),
-        registrationVerificationText = registrationVerificationWindow.$(".verification"),
-        ruleAcceptanceError = ruleAcceptanceInput.parent().$("span.error"),
-        captchaError = $("#regErrorMessage");
+    private final SelenideElement firstNameInput = $("#register_phis_name"),
+            lastNameInput = $("#register_phis_last_name"),
+            emailInput = $("#register_phis_login"),
+            phoneInput = $("#register_phis_phone"),
+            passwordInput = $("#register_phis_password"),
+            ruleAcceptanceInput = $("#register_phis_rules"),
+            reCaptchaInput = $(".box-reg-user-container").$("iframe"),
+            registrationSubmitButton = $("#reg_phis_submit"),
+            registrationVerificationWindow = $("#person-code"),
+            registrationVerificationText = registrationVerificationWindow.$(".verification"),
+            ruleAcceptanceError = ruleAcceptanceInput.parent().$("span.error"),
+            captchaError = $("#regErrorMessage");
 
 
     @Step("Перейти на страницу регистрации пользователя")
@@ -31,26 +31,31 @@ public class RegistrationPage {
         $("#reg-person").click();
         return this;
     }
+
     @Step("Заполнить имя пользователя")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
+
     @Step("Заполнить фамилию пользователя")
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
+
     @Step("Заполнить email пользователя")
     public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
+
     @Step("Заполнить телефон пользователя")
     public RegistrationPage setPhone(String value) {
         phoneInput.setValue(value);
         return this;
     }
+
     @Step("Заполнить пароль пользователя")
     public RegistrationPage setPassword(String value) {
         passwordInput.setValue(value);
@@ -64,10 +69,11 @@ public class RegistrationPage {
     }
 
     @Step("Пройти капчу")
-    public  RegistrationPage passReCaptcha() {
+    public RegistrationPage passReCaptcha() {
         reCaptchaInput.click();
         return this;
     }
+
     @Step("Нажать на кнопку \"Зарегистрироваться\"")
     public RegistrationPage pressSubmitButton() {
         registrationSubmitButton.click();

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.tarabne.api.Precondition;
 import ru.tarabne.pages.BasketPage;
+import ru.tarabne.testdata.BasketTestData;
 
 @Story("Корзина товаров")
 @Feature("UI | Список товаров в корзине")
@@ -14,11 +15,12 @@ import ru.tarabne.pages.BasketPage;
 public class BasketTests extends BaseTest {
     BasketPage basketPage = new BasketPage();
     Precondition precondition = new Precondition();
+    BasketTestData basketTestData = new BasketTestData();
 
-    @DisplayName("Предусловие")
+    @DisplayName("Предзаполнение корзины товарами")
     @BeforeEach
     void basketPrecondition() {
-        precondition.basketPrecondition();
+        precondition.populateCart();
     }
 
     @Test
@@ -29,8 +31,8 @@ public class BasketTests extends BaseTest {
         basketPage.openBasketPage()
                 .deleteFirstItem();
 
-        basketPage.cartQuantity1Check()
-                .firstItemDeletionCheck();
+        basketPage.cartQuantityCheck(1)
+                .firstItemDeletionCheck(basketTestData.secondItemInBasketId);
     }
 
 
@@ -43,7 +45,7 @@ public class BasketTests extends BaseTest {
                 .cleanTheBasket()
                 .confirmCleaningBasket();
 
-        basketPage.cartQuantity0Check()
+        basketPage.cartQuantityCheck(0)
                 .basketCleaningCheck();
     }
 
@@ -56,7 +58,7 @@ public class BasketTests extends BaseTest {
                 .cleanTheBasket()
                 .cancelCleaningBasket();
 
-        basketPage.cartQuantity2Check()
+        basketPage.cartQuantityCheck(2)
                 .basketCleaningCancellationCheck();
     }
 }

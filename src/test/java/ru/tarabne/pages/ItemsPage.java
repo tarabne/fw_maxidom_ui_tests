@@ -11,11 +11,11 @@ import static com.codeborne.selenide.Selenide.*;
 public class ItemsPage {
     NotificationWidgetComponent notificationWidgetComponent = new NotificationWidgetComponent();
     private final SelenideElement breadcrumbs = $(".breadcrumbs"),
-        contentHeader = $(".content-pages_title"),
-        contentItems = $(".b-catalog-items"),
-        itemByIndex = contentItems.$$("article").get(1),
-        itemHeader = itemByIndex.$("span[itemprop='name']"),
-        itemsNotFoundText = $("main.main");
+            contentHeader = $(".content-pages_title"),
+            contentItems = $(".b-catalog-items"),
+            itemByIndex = contentItems.$$("article").get(1),
+            itemHeader = itemByIndex.$("span[itemprop='name']"),
+            itemsNotFoundText = $("main.main");
 
     @Step("Проверить наличие заголовка \"Результаты поиска\"")
     public ItemsPage checkItemPageHeader() {
@@ -30,7 +30,7 @@ public class ItemsPage {
     }
 
     @Step("Проверить, что второй найденный товар в названии содержит слово \"{value}\"")
-    public ItemsPage checkItemNameByItemNumber(String value) {
+    public ItemsPage checkSecondItemName(String value) {
         notificationWidgetComponent.closeNotificationWidget();
         itemHeader.shouldHave(text(value));
         return this;
@@ -38,7 +38,7 @@ public class ItemsPage {
 
     @Step("Проверить отсутствие результатов поиска")
     public ItemsPage checkEmptyItemsList() {
-        contentItems.shouldNotBe(exist);
+        contentItems.shouldNot(exist);
         return this;
     }
 

@@ -15,8 +15,8 @@ public class MainPage {
     }
 
     @Step("Выполнить поиск по запросу \"{searchQuery}\"")
-    public MainPage doASearch(String searchQuery) {
-        searchBoxComponent.productSearch(searchQuery);
+    public MainPage doSearch(String searchQuery) {
+        searchBoxComponent.searchProduct(searchQuery);
         return this;
     }
 }

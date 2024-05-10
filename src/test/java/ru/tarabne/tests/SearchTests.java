@@ -20,23 +20,23 @@ public class SearchTests extends BaseTest {
     @DisplayName("Поиск товаров с поисковым запросом с результатами")
     @Owner("tarabne")
     @Severity(SeverityLevel.CRITICAL)
-    void searchResultShouldHaveItemByNameTest() {
+    void successfulSearchTest() {
         mainPage.openPage()
-                .doASearch(searchTestData.searchQueryWithResults);
+                .doSearch(searchTestData.searchQueryWithResults);
 
         itemsPage.closeWidget()
                 .checkItemPageHeader()
                 .checkBreadcrumbs(searchTestData.searchQueryWithResults)
-                .checkItemNameByItemNumber(searchTestData.searchQueryWithResults);
+                .checkSecondItemName(searchTestData.searchQueryWithResults);
     }
 
     @Test
     @DisplayName("Поиск товаров с поисковым запросом без результатов")
     @Owner("tarabne")
     @Severity(SeverityLevel.NORMAL)
-    void searchResultShouldNotHaveAnyItemTest() {
+    void nonExistantItemSearchTest() {
         mainPage.openPage()
-                .doASearch(searchTestData.searchQueryWithoutResults);
+                .doSearch(searchTestData.searchQueryWithoutResults);
 
         itemsPage.closeWidget()
                 .checkItemPageHeader()
@@ -48,9 +48,9 @@ public class SearchTests extends BaseTest {
     @DisplayName("Поиск товаров без поискового запроса")
     @Owner("tarabne")
     @Severity(SeverityLevel.MINOR)
-    void searchResultShouldHaveNotFoundTextTest() {
+    void emptyStringSearchTest() {
         mainPage.openPage()
-                .doASearch(searchTestData.emptySearchQuery);
+                .doSearch(searchTestData.emptySearchQuery);
 
         itemsPage.closeWidget()
                 .checkItemPageHeader()

@@ -2,33 +2,25 @@ package ru.tarabne.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import io.restassured.RestAssured;
-import org.openqa.selenium.Cookie;
 import ru.tarabne.testdata.BasketTestData;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static io.restassured.RestAssured.given;
 
 public class BasketPage {
     BasketTestData basketTestData = new BasketTestData();
     private final SelenideElement cartQuantity = $("#cart-quantity"),
-        cartItems = $(".cart-items"),
-        catItemsHead = $(".cart-items__head"),
-        emptyTheBasketButton = catItemsHead.$(withText("Очистить корзину")),
-        itemCardByNumber = cartItems.$$("article").get(0),
-        deleteItemButton =itemCardByNumber.$(".wrap-item-price").$(".link-delete"),
-        cleaningConfirmationModal = $("#modal-cart"),
-        confirmCleaningButton = cleaningConfirmationModal.$(withText("Да")),
-        cancelCleaningButton = cleaningConfirmationModal.$(withText("Нет")),
-        itemId = itemCardByNumber.$(".sku");
+            cartItems = $(".cart-items"),
+            cartItemsHead = $(".cart-items__head"),
+            emptyTheBasketButton = cartItemsHead.$(withText("Очистить корзину")),
+            itemCardByNumber = cartItems.$$("article").get(0),
+            deleteItemButton = itemCardByNumber.$(".wrap-item-price").$(".link-delete"),
+            cleaningConfirmationModal = $("#modal-cart"),
+            confirmCleaningButton = cleaningConfirmationModal.$(withText("Да")),
+            cancelCleaningButton = cleaningConfirmationModal.$(withText("Нет")),
+            itemId = itemCardByNumber.$(".sku");
 
     @Step("Перейти в корзину")
     public BasketPage openBasketPage() {
@@ -61,8 +53,8 @@ public class BasketPage {
     }
 
     @Step("Проверить успешность удаления первого товара")
-    public BasketPage firstItemDeletionCheck() {
-        itemId.shouldHave(text(basketTestData.secondItemInBasketId));
+    public BasketPage firstItemDeletionCheck(String secondItemId) {
+        itemId.shouldHave(text(secondItemId));
         return this;
     }
 
@@ -79,47 +71,8 @@ public class BasketPage {
     }
 
     @Step("Проверить количество товаров в корзине")
-    public BasketPage cartQuantity0Check() {
-        cartQuantity.shouldHave(text("0"));
+    public BasketPage cartQuantityCheck(int quantity) {
+        cartQuantity.shouldHave(text(String.valueOf(quantity)));
         return this;
     }
-
-    @Step("Проверить количество товаров в корзине")
-    public BasketPage cartQuantity1Check() {
-        cartQuantity.shouldHave(text("1"));
-        return this;
-    }
-
-    @Step("Проверить количество товаров в корзине")
-    public BasketPage cartQuantity2Check() {
-        cartQuantity.shouldHave(text("2"));
-        return this;
-    }
-
-    @Step("Добавить в корзину два товара")
-    final public BasketPage basketPrecondition() {
-        open("https://www.maxidom.ru");
-        Set<Cookie> cookies = getWebDriver().manage().getCookies();
-        Map<String, String> cookieMap = new HashMap<>();
-
-        for (Cookie cookie : cookies) {
-            cookieMap.put(cookie.getName(), cookie.getValue());
-        }
-        RestAssured.baseURI = "https://www.maxidom.ru";
-        given()
-                .cookies(cookieMap)
-                .when()
-                .get("/ajax/basket/addBasket.php?quantity=1&id=6747076")
-                .then();
-
-        given()
-                .cookies(cookieMap)
-                .when()
-                .get("/ajax/basket/addBasket.php?quantity=1&id=10318010")
-                .then();
-
-        return this;
-    }
-
-
 }

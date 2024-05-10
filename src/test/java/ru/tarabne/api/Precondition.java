@@ -1,6 +1,7 @@
 package ru.tarabne.api;
 
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.Cookie;
 
 import java.util.HashMap;
@@ -12,7 +13,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
 
 public class Precondition {
-    public void basketPrecondition() {
+    /*Предзаполняем корзину двумя товарами*/
+    public void populateCart() {
         open("https://www.maxidom.ru");
         Set<Cookie> cookies = getWebDriver().manage().getCookies();
         Map<String, String> cookieMap = new HashMap<>();

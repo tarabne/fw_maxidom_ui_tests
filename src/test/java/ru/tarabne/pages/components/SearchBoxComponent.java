@@ -6,8 +6,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class SearchBoxComponent {
     private final SelenideElement searchQueryField = $(".header__2nd-row").$("#q"),
-        searchButton = $(".header__2nd-row").$("button");
-    public void productSearch(String searchText) {
+            searchButton = $(".header__2nd-row").$("button");
+
+    public void searchProduct(String searchText) {
         searchQueryField.setValue(searchText);
         searchButton.click();
     }
